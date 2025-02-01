@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from .models import FAQ
 from django.core.cache import cache
 
+
 class FAQModelTest(TestCase):
     def setUp(self):
         self.faq = FAQ.objects.create(
@@ -16,9 +17,14 @@ class FAQModelTest(TestCase):
         self.assertEqual(self.faq.answer, "Django is a Python web framework.")
 
     def test_translation_method(self):
-        self.assertEqual(self.faq.get_translated_question("hi"), "Django क्या है?")
+        self.assertEqual(
+            self.faq.get_translated_question("hi"), "Django क्या है?"
+        )
         self.assertEqual(self.faq.get_translated_question("bn"), "Django কি?")
-        self.assertEqual(self.faq.get_translated_question("en"), "What is Django?")
+        self.assertEqual(
+            self.faq.get_translated_question("en"), "What is Django?"
+        )
+
 
 class FAQAPITest(TestCase):
     def setUp(self):

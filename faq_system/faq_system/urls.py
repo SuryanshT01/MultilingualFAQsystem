@@ -21,6 +21,5 @@ from django.http import HttpResponseRedirect
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/faqs/', include('faqs.urls')),  # Include FAQ URLs
-    path('', lambda request: HttpResponseRedirect('/api/faqs/')),  # Redirect root to FAQs
+    path('', lambda request: HttpResponseRedirect('/api/faqs/')),
 ]
-

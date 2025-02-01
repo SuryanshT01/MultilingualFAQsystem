@@ -20,7 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j5cql+1-au-j*g+gpw6b$j-mqg#l$ifsddq20qs46*!vlb-auz'
+SECRET_KEY = (
+    'django-insecure-j5cql+1-au-j*g+gpw6b$j-mqg#l$ifsddq20qs46*!vlb-auz'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -90,8 +92,7 @@ DATABASES = {
 try:
     import redis
     redis_client = redis.Redis(host='127.0.0.1', port=6379, db=1)
-    redis_client.ping()  # Test the connection
-    
+    redis_client.ping()
     CACHES = {
         'default': {
             'BACKEND': 'django_redis.cache.RedisCache',
@@ -131,16 +132,27 @@ CKEDITOR_CONFIGS = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'MinimumLengthValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'CommonPasswordValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.NumericPasswordValidator'
+        ),
     },
 ]
 

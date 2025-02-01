@@ -3,6 +3,7 @@ from .models import FAQ
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 
+
 class FAQAdminForm(forms.ModelForm):
     class Meta:
         model = FAQ
@@ -10,6 +11,7 @@ class FAQAdminForm(forms.ModelForm):
         widgets = {
             'answer': CKEditorWidget(),
         }
+
 
 @admin.register(FAQ)
 class FAQAdmin(admin.ModelAdmin):
