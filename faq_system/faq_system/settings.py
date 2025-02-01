@@ -86,16 +86,30 @@ DATABASES = {
 }
 
 
-# Redis Caching
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://redis:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+# Cache configuration with fallback
+try:
+    import redis
+    redis_client = redis.Redis(host='127.0.0.1', port=6379, db=1)
+    redis_client.ping()  # Test the connection
+    
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': 'redis://127.0.0.1:6379/1',
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            },
+            'KEY_PREFIX': 'faq',  # Add a prefix to avoid key collisions
         }
     }
-}
+except (redis.ConnectionError, ModuleNotFoundError):
+    # Fallback to in-memory caching if Redis is not available
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'unique-snowflake',  # Unique identifier for the cache
+        }
+    }
 
 
 # Static and Media Files
