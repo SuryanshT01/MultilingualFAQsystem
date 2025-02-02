@@ -56,6 +56,9 @@ docker-compose up --build
 ```sh
 curl http://127.0.0.1:8000/api/faqs/
 ```
+Below is an example of testing the API in Postman:
+
+![Postman API Response](screenshots/apifaqs.png)
 
 ### Fetch FAQs in Hindi
 ```sh
@@ -66,7 +69,7 @@ curl http://127.0.0.1:8000/api/faqs/?lang=hi
 ```sh
 curl http://127.0.0.1:8000/api/faqs/?lang=bn
 ```
-
+![Postman API Response](screenshots/apifaqbn.png)
 ---
 
 ## Model Design 🏗️
@@ -155,7 +158,7 @@ class FAQModelTest(TestCase):
     def test_faq_creation(self):
         self.assertEqual(self.faq.question, "What is Django?")
 ```
-
+![Pytest Response](screenshots/pytest.png)
 ---
 
 ## Code Quality 🧹
@@ -168,6 +171,19 @@ flake8 .
 ---
 
 ## Deployment 🚀
+
+### Dockerized API Testing
+
+![Docker Container](screenshots/dockercontainer.png)
+
+
+After running the container, access the API at http://127.0.0.1:8000/api/faqs/
+
+![Postman_API Response](screenshots/dockerapi.png)
+![Postman_API Response](screenshots/dockerapihn.png)
+![Postman_API Response](screenshots/dockerapibn.png)
+
+
 ### Deploy to Heroku
 ```sh
 heroku login
